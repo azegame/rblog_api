@@ -1,9 +1,39 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# 既存のデータをクリア
+Comment.delete_all
+Post.delete_all
+
+posts = []
+10.times do |i|
+  posts << Post.create!(
+    title: "タイトル#{i + 1}", 
+    body: "Ruby on Railsを使って簡単なウェブアプリケーションを作る方法についての投稿です。この投稿では、基本的なセットアップや初期設定について説明します。"
+  )
+end
+
+# コメントを作成
+comments = [
+  "とても分かりやすい内容でした！",
+  "実際にやってみたらうまくいきました。",
+  "このトピックについてもっと知りたいです。",
+  "Railsの便利さを再認識しました。",
+  "初心者には最適なガイドです。",
+  "ありがとうございます！すごく助かりました。",
+  "実践的なアドバイスがとても良かったです。",
+  "この情報を共有します！",
+  "次回も楽しみにしています。",
+  "もう少し詳しく知りたいです。",
+  "実際のプロジェクトで使ってみます。",
+  "質問ですが、データベースの設定はどうすれば良いですか？",
+  "この方法は今後の開発に役立ちそうです。",
+  "私も同じように試してみましたが、失敗しました。",
+  "他のフレームワークとの比較もしてほしいです。",
+  "進捗報告を楽しみにしています！"
+]
+
+100.times do |i|
+  post = posts.sample # ランダムに投稿を選択
+  Comment.create!(
+    body: comments.sample, # ランダムにコメントを選択
+    post: post
+  )
+end
