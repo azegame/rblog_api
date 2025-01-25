@@ -5,7 +5,7 @@ Post.delete_all
 posts = []
 10.times do |i|
   posts << Post.create!(
-    title: "タイトル#{i + 1}", 
+    title: "タイトル#{i + 1}",
     content: "content#{i + 1}"
   )
 end
@@ -21,7 +21,7 @@ comments = [
   "comment7",
   "comment8",
   "comment9",
-  "comment10",
+  "comment10"
 ]
 
 100.times do |i|
